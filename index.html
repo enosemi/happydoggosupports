@@ -1,0 +1,1444 @@
+<!doctype html>
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>HappyDoggoSupport</title> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://checkout.flutterwave.com/v3.js"></script> 
+  <style>
+    :root {
+      --primary: #ff6b6b;
+      --primary-dark: #ff5252;
+      --secondary: #4ecdc4;
+      --accent: #ffd166;
+      --dark: #2d3436;
+      --light: #f7f9f9;
+      --gray: #a5b1c2;
+      --text: #2d3436;
+      --success: #06d6a0;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f9f9f9;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header */
+    header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ff6b6b !important;
+      font-family: 'Segoe UI', Tahoma,Geneva, Verdana, sans-serif !important;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo span {
+      color: #ff6b6b !important;
+      font-family: 'Segoe UI', Tahoma,Geneva, Verdana, sans-serif !important;
+      font-weight: 700 !important;
+      font-size: 1.8rem !important;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    
+    nav a {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    nav a:hover {
+      color: var(--primary);
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1586&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 5rem 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    
+    /* Contexts Section */
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--dark);
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .section-title p {
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .contexts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .context-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+    
+    .context-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .context-image {
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .context-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .context-card:hover .context-image img {
+      transform: scale(1.05);
+    }
+    
+    .context-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--secondary);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .context-badge.urgent {
+      background: var(--primary);
+    }
+    
+    .context-content {
+      padding: 1.5rem;
+    }
+    
+    .context-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .context-type {
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .context-description {
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+    
+    .context-needs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .need-tag {
+      background: var(--light);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: var(--dark);
+    }
+    
+    .progress-container {
+      margin-bottom: 1.5rem;
+    }
+    
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    
+    .progress-bar {
+      height: 8px;
+      background: #eee;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .progress {
+      height: 100%;
+      background: var(--secondary);
+      border-radius: 4px;
+    }
+    
+    /* Donation Section */
+    .donation-section {
+      background: white;
+      border-radius: 10px;
+      padding: 3rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+    
+    .donation-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .form-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+    
+    .donation-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .donation-option {
+      background: var(--light);
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+    }
+    
+    .donation-option:hover {
+      border-color: var(--accent);
+    }
+    
+    .donation-option.active {
+      background: var(--accent);
+      color: var(--dark);
+      border-color: var(--accent);
+    }
+    
+    .custom-amount {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .api-status {
+      display: none;
+    }
+    
+    .donate-btn {
+      width: 100%;
+      padding: 1.2rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .donate-btn:hover {
+      background: var(--primary-dark);
+    }
+    
+    .success-message {
+      display: none;
+      background: #d4edda;
+      border: 1px solid #c3e6cb;
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    
+    .success-message.active {
+      display: block;
+    }
+    
+    /* Country Selection */
+    .country-section {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .country-select {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      background: white;
+    }
+    
+    .currency-display {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-align: center;
+      margin: 1rem 0;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      border: 2px solid #eee;
+    }
+    
+    /* Enhanced Form Styling */
+    .form-section {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 1.5rem 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e9ecef;
+    }
+    
+    .form-section-title {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .form-section-title i {
+      color: var(--primary);
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--dark);
+      font-size: 0.95rem;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s;
+      background-color: #f8f9fa;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      background-color: white;
+      box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+    }
+    
+    .form-control-icon {
+      position: absolute;
+      left: 1rem;
+      top: 2.8rem;
+      color: var(--gray);
+      font-size: 1.1rem;
+    }
+    
+    .form-hint {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .form-hint i {
+      color: var(--primary);
+    }
+    
+    /* Crypto Payment Section */
+    .crypto-section {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--secondary);
+    }
+    
+    .crypto-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .crypto-option:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .crypto-option.active {
+      border: 2px solid var(--secondary);
+    }
+    
+    .crypto-icon {
+      font-size: 1.5rem;
+    }
+    
+    /* Impact Section */
+    .impact-section {
+      background: var(--dark);
+      color: white;
+      padding: 4rem 0;
+      text-align: center;
+    }
+    
+    .impact-stats {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .stat {
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      font-size: 1.2rem;
+    }
+    
+    /* How It Works */
+    .how-it-works {
+      padding: 4rem 0;
+      background: var(--light);
+    }
+    
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .step {
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .step-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+    }
+    
+    .step h3 {
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    
+    /* Footer */
+    footer {
+      background: #1a252f;
+      color: white;
+      padding: 3rem 0 2rem;
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--secondary);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #2c3e50;
+      color: #bbb;
+    }
+    
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .impact-stats {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      
+      .steps {
+        flex-direction: column;
+      }
+      
+      .donation-options {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .contexts-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+  </style> 
+</head> 
+
+<body> 
+  <!-- Header -->
+  <header> 
+    <div class="container"> 
+      <div class="header-content"> 
+        <div class="logo"> 
+          <img src="happy.jpg" alt=""> 
+          <span>HappyDoggoSupport</span> 
+        </div> 
+        <nav> 
+          <ul> 
+            <li><a href="#">Home</a></li> 
+            <li><a href="#contexts">Our Work</a></li> 
+            <li><a href="#how-it-works">How It Works</a></li> 
+            <li><a href="#donation-section">Donate</a></li> 
+          </ul> 
+        </nav> 
+        <div class="header-actions"> 
+          <a href="#donation-section" class="btn">Donate Now</a> 
+        </div> 
+      </div> 
+    </div> 
+  </header> 
+
+  <!-- Hero Section -->
+  <section class="hero"> 
+    <div class="container"> 
+      <h1 id="hero-title">We Want to Fix the Global Street Dog Problem</h1> 
+      <p id="hero-description">Your donation provides medical care, food, and shelter for street dogs waiting for their forever homes.</p> 
+      <a href="#donation-section" class="btn">Donate Now</a> 
+    </div> 
+  </section> 
+
+  <!-- Contexts Section -->
+  <section class="container" id="contexts"> 
+    <div class="section-title"> 
+      <h2>How You Can Help</h2> 
+      <p>Choose how you want to make a difference in the lives of street dogs</p> 
+    </div> 
+    <div class="contexts-grid"> 
+      <div class="context-card"> 
+        <div class="context-image"> 
+          <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Support Our Mission"> 
+          <div class="context-badge urgent">General Fund</div> 
+        </div> 
+        <div class="context-content"> 
+          <h3>Donate to support this mission</h3> 
+          <div class="context-type"> 
+            <i class="fas fa-hands-helping"></i> 
+            <span>General Operations</span> 
+          </div> 
+          <p class="context-description">Your donation supports all aspects of our street dog rescue mission - from food and shelter to medical supplies and rescue operations. This flexible funding allows us to respond quickly to emergencies.</p> 
+          <div class="context-needs"> 
+            <span class="need-tag">Food & Shelter</span> 
+            <span class="need-tag">Medical Supplies</span> 
+            <span class="need-tag">Rescue Operations</span> 
+          </div> 
+          <div class="progress-container"> 
+            <div class="progress-info"> 
+              <span class="raised">$3,700 raised</span> 
+              <span class="goal">of $15,000 goal</span> 
+            </div> 
+            <div class="progress-bar"> 
+              <div class="progress" style="width: 25%"></div> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+      <div class="context-card"> 
+        <div class="context-image"> 
+          <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="Tina Hospital"> 
+          <div class="context-badge">Medical Care</div> 
+        </div> 
+        <div class="context-content"> 
+          <h3>Donate to Tina Hospital</h3> 
+          <div class="context-type"> 
+            <i class="fas fa-hospital"></i> 
+            <span>Medical Treatment Center</span> 
+          </div> 
+          <p class="context-description">Tina Hospital is our dedicated medical facility providing emergency care, surgeries, and rehabilitation for injured and sick street dogs. Your donation directly funds life-saving treatments and recovery programs.</p> 
+          <div class="context-needs"> 
+            <span class="need-tag">Surgeries</span> 
+            <span class="need-tag">Medications</span> 
+            <span class="need-tag">Rehabilitation</span> 
+          </div> 
+          <div class="progress-container"> 
+            <div class="progress-info"> 
+              <span class="raised">$6,750 raised</span> 
+              <span class="goal">of $22,500 goal</span> 
+            </div> 
+            <div class="progress-bar"> 
+              <div class="progress" style="width: 30%"></div> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+      <div class="context-card"> 
+        <div class="context-image"> 
+          <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Adoption Program"> 
+          <div class="context-badge">Forever Homes</div> 
+        </div> 
+        <div class="context-content"> 
+          <h3>Adoption</h3> 
+          <div class="context-type"> 
+            <i class="fas fa-home"></i> 
+            <span>Finding Forever Families</span> 
+          </div> 
+          <p class="context-description">Support our adoption program that matches rehabilitated street dogs with loving forever families. Your donation helps cover adoption fees, home checks, and post-adoption support to ensure successful placements.</p> 
+          <div class="context-needs"> 
+            <span class="need-tag">Adoption Events</span> 
+            <span class="need-tag">Home Checks</span> 
+            <span class="need-tag">Support Services</span> 
+          </div> 
+          <div class="progress-container"> 
+            <div class="progress-info"> 
+              <span class="raised">$2,250 raised</span> 
+              <span class="goal">of $7,500 goal</span> 
+            </div> 
+            <div class="progress-bar"> 
+              <div class="progress" style="width: 30%"></div> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div> 
+  </section> 
+
+  <!-- Donation Section -->
+  <section class="container" id="donation-section"> 
+    <div class="donation-section"> 
+      <div class="donation-form"> 
+        <h3 class="form-title">Help The Mission</h3> 
+        <p style="margin-bottom: 2rem; color: var(--gray);">Your donation helps provide food, medical care, and shelter for street dogs in need.</p> 
+        
+        <!-- API Status (Hidden) -->
+        <div class="api-status" id="flutterwave-status"> 
+          <i class="fas fa-circle" id="flutterwave-status-icon"></i> 
+          <span id="flutterwave-status-text">Flutterwave: Connected</span> 
+        </div> 
+        <div class="api-status" id="bybit-status"> 
+          <i class="fas fa-circle" id="bybit-status-icon"></i> 
+          <span id="bybit-status-text">Bybit: Connected</span> 
+        </div> 
+        
+        <form id="donation-form"> 
+          <!-- Country Selection -->
+          <div class="country-section">
+            <h4>Select Your Country</h4>
+            <p>Choose your country to see donation options in your local currency</p>
+            <select class="country-select" id="country-select">
+              <option value="US">United States (USD $)</option>
+              <option value="NG">Nigeria (NGN ₦)</option>
+              <option value="GB">United Kingdom (GBP £)</option>
+              <option value="EU">European Union (EUR €)</option>
+              <option value="KE">Kenya (KES KSh)</option>
+              <option value="GH">Ghana (GHS GH₵)</option>
+              <option value="ZA">South Africa (ZAR R)</option>
+              <option value="UG">Uganda (UGX USh)</option>
+              <option value="TZ">Tanzania (TZS TSh)</option>
+              <option value="RW">Rwanda (RWF FRw)</option>
+              <option value="CM">Cameroon (XAF FCFA)</option>
+              <option value="CI">Côte d'Ivoire (XOF CFA)</option>
+              <option value="SN">Senegal (XOF CFA)</option>
+              <option value="EG">Egypt (EGP E£)</option>
+              <option value="AE">United Arab Emirates (AED د.إ)</option>
+              <option value="SA">Saudi Arabia (SAR ﷼)</option>
+              <option value="IN">India (INR ₹)</option>
+              <option value="CA">Canada (CAD C$)</option>
+              <option value="AU">Australia (AUD A$)</option>
+            </select>
+            <div class="currency-display" id="currency-display">
+              Selected Currency: US Dollar (USD $)
+            </div>
+          </div>
+          
+          <div class="donation-options" id="donation-options"> 
+            <div class="donation-option active" data-amount="25">$25</div> 
+            <div class="donation-option" data-amount="50">$50</div> 
+            <div class="donation-option" data-amount="100">$100</div> 
+            <div class="donation-option" data-amount="250">$250</div> 
+            <div class="donation-option" data-amount="500">$500</div> 
+            <div class="donation-option" data-amount="1000">$1,000</div> 
+          </div> 
+          
+          <input type="number" class="custom-amount" placeholder="Or enter custom amount" id="custom-amount"> 
+          
+          <!-- Enhanced Personal Information Section -->
+          <div class="form-section">
+            <h4 class="form-section-title">
+              <i class="fas fa-user-circle"></i>
+              Your Information
+            </h4>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <i class="fas fa-user form-control-icon"></i>
+                <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                <div class="form-hint">
+                  <i class="fas fa-info-circle"></i>
+                  Please enter your legal name as it appears on your ID
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <i class="fas fa-phone form-control-icon"></i>
+                <input type="tel" id="phone" class="form-control" placeholder="+1 (555) 123-4567" required>
+                <div class="form-hint">
+                  <i class="fas fa-info-circle"></i>
+                  Include country code for international numbers
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <i class="fas fa-envelope form-control-icon"></i>
+              <input type="email" id="email" class="form-control" placeholder="your.email@example.com" required>
+              <div class="form-hint">
+                <i class="fas fa-info-circle"></i>
+                We'll send your donation receipt to this address
+              </div>
+            </div>
+          </div>
+          
+          
+          <button type="submit" class="donate-btn"> 
+            <i class="fas fa-heart"></i> 
+            Complete Donation 
+          </button> 
+        </form> 
+        
+        <div class="success-message" id="success-message"> 
+          <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--success); margin-bottom: 1rem;"></i> 
+          <h3>Thank You for Your Generosity!</h3> 
+          <p>Your donation is making a real difference for street dogs in need.</p> 
+          <div id="crypto-success"> 
+            <p>Your donation has been converted to <span id="crypto-amount">0.00 USDT</span> and sent to our wallet.</p> 
+            <p>Transaction ID: <span id="transaction-id">TX-987654321</span></p> 
+          </div> 
+        </div> 
+      </div> 
+    </div> 
+  </section> 
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how-it-works"> 
+    <div class="container"> 
+      <div class="section-title"> 
+        <h2>How Your Donation Helps</h2> 
+        <p>See the direct impact of your contribution to street dog rescue</p> 
+      </div> 
+      <div class="steps"> 
+        <div class="step"> 
+          <div class="step-icon"> <i class="fas fa-search"></i> </div> 
+          <h3>Rescue</h3> 
+          <p>We find dogs in desperate situations and bring them to safety.</p> 
+        </div> 
+        <div class="step"> 
+          <div class="step-icon"> <i class="fas fa-stethoscope"></i> </div> 
+          <h3>Medical Care</h3> 
+          <p>Each dog receives necessary veterinary treatment and rehabilitation.</p> 
+        </div> 
+        <div class="step"> 
+          <div class="step-icon"> <i class="fas fa-home"></i> </div> 
+          <h3>Foster Care</h3> 
+          <p>Dogs recover in loving foster homes while awaiting adoption.</p> 
+        </div> 
+        <div class="step"> 
+          <div class="step-icon"> <i class="fas fa-heart"></i> </div> 
+          <h3>Forever Home</h3> 
+          <p>We carefully match each dog with their perfect forever family.</p> 
+        </div> 
+      </div> 
+    </div> 
+  </section> 
+
+  <!-- Impact Section -->
+  <section class="impact-section"> 
+    <div class="container"> 
+      <div class="section-title"> 
+        <h2>Our Impact</h2> 
+        <p>Together, we've achieved remarkable results in saving dogs' lives</p> 
+      </div> 
+      <div class="impact-stats"> 
+        <div class="stat"> 
+          <div class="stat-number" id="dogs-rescued">1,247</div> 
+          <div class="stat-label">Dogs Rescued</div> 
+        </div> 
+        <div class="stat"> 
+          <div class="stat-number" id="funds-raised">$32,500</div> 
+          <div class="stat-label">Medical Funds Raised</div> 
+        </div> 
+        <div class="stat"> 
+          <div class="stat-number" id="adoption-rate">94%</div> 
+          <div class="stat-label">Adoption Rate</div> 
+        </div> 
+        <div class="stat"> 
+          <div class="stat-number" id="volunteers">312</div> 
+          <div class="stat-label">Volunteers</div> 
+        </div> 
+      </div> 
+    </div> 
+  </section> 
+
+  <!-- Footer -->
+  <footer> 
+    <div class="container"> 
+      <div class="footer-content"> 
+        <div class="footer-column"> 
+          <h3>HappyDoggoSupport</h3> 
+          <p>If you're interested in fostering or adopting any of our amazing dogs, please complete an adoption application or email us at the address below.</p> 
+          <div class="social-links"> 
+            <a href="#"><i class="fab fa-facebook-f"></i></a> 
+            <a href="#"><i class="fab fa-instagram"></i></a> 
+            <a href="#"><i class="fab fa-twitter"></i></a> 
+            <a href="#"><i class="fab fa-youtube"></i></a> 
+          </div> 
+        </div> 
+        <div class="footer-column"> 
+          <h3>Quick Links</h3> 
+          <ul class="footer-links"> 
+            <li><a href="#">Home</a></li> 
+            <li><a href="#contexts">Our Work</a></li> 
+            <li><a href="#how-it-works">How It Works</a></li> 
+            <li><a href="#donation-section">Donate</a></li> 
+          </ul> 
+        </div> 
+        <div class="footer-column"> 
+          <h3>Contact Us</h3> 
+          <ul class="footer-links"> 
+            <li><i class="fas fa-envelope"></i> <span id="contact-email">wearehappydoggo@gmail.com</span></li> 
+            <li><i class="fas fa-phone"></i> <span id="contact-phone">+1 (312) 677-9365</span></li> 
+            <li><i class="fas fa-map-marker-alt"></i> United Kingdom</li> 
+          </ul> 
+        </div> 
+      </div> 
+      <div class="copyright"> 
+        <p>© 2025 HappyDoggoSupport. Privacy Policy. Terms and Conditions. Happy Doggo is a registered UK Charity and US 501(c)(3)</p> 
+      </div> 
+    </div> 
+  </footer> 
+
+  <script>
+    // ==================== COUNTRY AND CURRENCY SETTINGS ====================
+    
+    const countrySettings = {
+      'US': { currency: 'USD', symbol: '$', name: 'US Dollar',
+              amounts: [25, 50, 100, 250, 500, 1000],
+              paymentOptions: "card, banktransfer, googlepay, applepay" },
+      'NG': { currency: 'NGN', symbol: '₦', name: 'Nigerian Naira', 
+              amounts: [1000, 2500, 5000, 10000, 25000, 50000],
+              paymentOptions: "card, banktransfer, ussd, mobilemoney, mpesa, banktransfer_ng" },
+      'GB': { currency: 'GBP', symbol: '£', name: 'British Pound',
+              amounts: [20, 50, 100, 250, 500, 1000],
+              paymentOptions: "card, banktransfer" },
+      'EU': { currency: 'EUR', symbol: '€', name: 'Euro',
+              amounts: [25, 50, 100, 250, 500, 1000],
+              paymentOptions: "card, banktransfer" },
+      'KE': { currency: 'KES', symbol: 'KSh', name: 'Kenyan Shilling',
+              amounts: [500, 1000, 2500, 5000, 10000, 25000],
+              paymentOptions: "card, mpesa, banktransfer" },
+      'GH': { currency: 'GHS', symbol: 'GH₵', name: 'Ghanaian Cedi',
+              amounts: [50, 100, 250, 500, 1000, 2500],
+              paymentOptions: "card, mobilemoneyghana, banktransfer" },
+      'ZA': { currency: 'ZAR', symbol: 'R', name: 'South African Rand',
+              amounts: [200, 500, 1000, 2500, 5000, 10000],
+              paymentOptions: "card, banktransfer" },
+      'UG': { currency: 'UGX', symbol: 'USh', name: 'Ugandan Shilling',
+              amounts: [10000, 25000, 50000, 100000, 250000, 500000],
+              paymentOptions: "card, mobilemoneyuganda, banktransfer" },
+      'TZ': { currency: 'TZS', symbol: 'TSh', name: 'Tanzanian Shilling',
+              amounts: [10000, 25000, 50000, 100000, 250000, 500000],
+              paymentOptions: "card, mobilemoney, banktransfer" },
+      'RW': { currency: 'RWF', symbol: 'FRw', name: 'Rwandan Franc',
+              amounts: [5000, 10000, 25000, 50000, 100000, 250000],
+              paymentOptions: "card, mobilemoneyrwanda, banktransfer" },
+      'CM': { currency: 'XAF', symbol: 'FCFA', name: 'Central African CFA Franc',
+              amounts: [2500, 5000, 10000, 25000, 50000, 100000],
+              paymentOptions: "card, mobilemoney, banktransfer" },
+      'CI': { currency: 'XOF', symbol: 'CFA', name: 'West African CFA Franc',
+              amounts: [2500, 5000, 10000, 25000, 50000, 100000],
+              paymentOptions: "card, mobilemoney, banktransfer" },
+      'SN': { currency: 'XOF', symbol: 'CFA', name: 'West African CFA Franc',
+              amounts: [2500, 5000, 10000, 25000, 50000, 100000],
+              paymentOptions: "card, mobilemoney, banktransfer" },
+      'EG': { currency: 'EGP', symbol: 'E£', name: 'Egyptian Pound',
+              amounts: [200, 500, 1000, 2500, 5000, 10000],
+              paymentOptions: "card, banktransfer" },
+      'AE': { currency: 'AED', symbol: 'د.إ', name: 'UAE Dirham',
+              amounts: [100, 250, 500, 1000, 2500, 5000],
+              paymentOptions: "card, banktransfer" },
+      'SA': { currency: 'SAR', symbol: '﷼', name: 'Saudi Riyal',
+              amounts: [100, 250, 500, 1000, 2500, 5000],
+              paymentOptions: "card, banktransfer" },
+      'IN': { currency: 'INR', symbol: '₹', name: 'Indian Rupee',
+              amounts: [500, 1000, 2500, 5000, 10000, 25000],
+              paymentOptions: "card, banktransfer, upi" },
+      'CA': { currency: 'CAD', symbol: 'C$', name: 'Canadian Dollar',
+              amounts: [25, 50, 100, 250, 500, 1000],
+              paymentOptions: "card, banktransfer" },
+      'AU': { currency: 'AUD', symbol: 'A$', name: 'Australian Dollar',
+              amounts: [25, 50, 100, 250, 500, 1000],
+              paymentOptions: "card, banktransfer" }
+    };
+
+    // ==================== CONFIGURATION MANAGEMENT ====================
+    
+    // Default configuration with LIVE KEYS
+    let CONFIG = {
+      flutterwavePublicKey: 'FLWPUBK-f65ccea1da28aaae9541a8ea4ff5fc93-X',
+      bybitWallet: 'TUehgCTHvGA9bVLJrq4tgkRBykQTZHU2wS'
+    };
+
+    // Load configuration from localStorage
+    function loadConfigFromStorage() {
+      const storedConfig = localStorage.getItem('happydoggosupport_config');
+      if (storedConfig) {
+        const parsedConfig = JSON.parse(storedConfig);
+        CONFIG = { ...CONFIG, ...parsedConfig.payment };
+      }
+    }
+
+    // Load content from localStorage
+    function loadContentFromStorage() {
+      const storedContent = localStorage.getItem('happydoggosupport_content');
+      if (storedContent) {
+        const content = JSON.parse(storedContent);
+        
+        // Update hero section
+        if (content.hero) {
+          const heroTitle = document.getElementById('hero-title');
+          const heroDescription = document.getElementById('hero-description');
+          
+          if (heroTitle && content.hero.title) heroTitle.textContent = content.hero.title;
+          if (heroDescription && content.hero.description) heroDescription.textContent = content.hero.description;
+        }
+        
+        // Update impact section
+        if (content.impact) {
+          const dogsRescued = document.getElementById('dogs-rescued');
+          const fundsRaised = document.getElementById('funds-raised');
+          const adoptionRate = document.getElementById('adoption-rate');
+          const volunteers = document.getElementById('volunteers');
+          
+          if (dogsRescued && content.impact.dogsRescued) dogsRescued.textContent = content.impact.dogsRescued;
+          if (fundsRaised && content.impact.fundsRaised) fundsRaised.textContent = content.impact.fundsRaised;
+          if (adoptionRate && content.impact.adoptionRate) adoptionRate.textContent = content.impact.adoptionRate + '%';
+          if (volunteers && content.impact.volunteers) volunteers.textContent = content.impact.volunteers;
+        }
+        
+        // Update contact information
+        if (content.contact) {
+          const contactEmail = document.getElementById('contact-email');
+          const contactPhone = document.getElementById('contact-phone');
+          
+          if (contactEmail && content.contact.email) contactEmail.textContent = content.contact.email;
+          if (contactPhone && content.contact.phone) contactPhone.textContent = content.contact.phone;
+        }
+      }
+    }
+
+    // ==================== FORM VALIDATION ====================
+    
+    function validateDonationForm(email, name, phone, amount) {
+      const errors = [];
+      
+      if (!email || email.length < 5 || !email.includes('@')) {
+        errors.push('Valid email is required');
+      }
+      
+      if (!name || name.length < 2) {
+        errors.push('Full name must be at least 2 characters');
+      }
+      
+      if (!phone || phone.length < 5) {
+        errors.push('Valid phone number is required');
+      }
+      
+      if (!amount || amount <= 0) {
+        errors.push('Valid donation amount is required');
+      }
+      
+      return errors;
+    }
+
+    // ==================== FLUTTERWAVE INTEGRATION ====================
+    
+    function initializeFlutterwavePayment(email, amount, phone, name, countryCode, callback) {
+      const country = countrySettings[countryCode];
+      
+      // Validate inputs
+      if (!email || !phone || !name) {
+        alert('Please fill in all required fields');
+        return false;
+      }
+      
+      // Generate transaction reference
+      const txRef = "HAPPYDOGO_" + Math.floor((Math.random() * 1000000000) + 1);
+      
+      try {
+        FlutterwaveCheckout({
+          public_key: CONFIG.flutterwavePublicKey,
+          tx_ref: txRef,
+          amount: amount,
+          currency: country.currency,
+          payment_options: country.paymentOptions,
+          customer: {
+            email: email,
+            phone_number: phone,
+            name: name,
+          },
+          customizations: {
+            title: "HappyDogoSupport",
+            description: "Donation for street dog rescue and care",
+            logo: "https://images.unsplash.com/photo-1450778869180-41d0601e046e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80",
+          },
+          callback: function(response) {
+            callback(response);
+          },
+          onclose: function() {
+            console.log('Payment window closed');
+          }
+        });
+        
+        return true;
+      } catch (error) {
+        console.error('Flutterwave initialization error:', error);
+        alert('Error initializing payment. Please try again.');
+        return false;
+      }
+    }
+
+    // ==================== BYBIT SIMULATION ====================
+    
+    async function simulateBybitConversion(amount, currency) {
+      // Simulate API call to Bybit with currency conversion
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          // Mock conversion rates (these would be real rates in production)
+          const conversionRates = {
+            'NGN': 0.0012, // 1 NGN = 0.0012 USDT
+            'USD': 0.98,   // 1 USD = 0.98 USDT
+            'GBP': 1.22,   // 1 GBP = 1.22 USDT
+            'EUR': 1.07,   // 1 EUR = 1.07 USDT
+            'KES': 0.0078, // 1 KES = 0.0078 USDT
+            'GHS': 0.082,  // 1 GHS = 0.082 USDT
+            'ZAR': 0.054,  // 1 ZAR = 0.054 USDT
+            'UGX': 0.00027,// 1 UGX = 0.00027 USDT
+            'TZS': 0.00041,// 1 TZS = 0.00041 USDT
+            'RWF': 0.00081,// 1 RWF = 0.00081 USDT
+            'XAF': 0.0016, // 1 XAF = 0.0016 USDT
+            'XOF': 0.0016, // 1 XOF = 0.0016 USDT
+            'EGP': 0.032,  // 1 EGP = 0.032 USDT
+            'AED': 0.27,   // 1 AED = 0.27 USDT
+            'SAR': 0.27,   // 1 SAR = 0.27 USDT
+            'INR': 0.012,  // 1 INR = 0.012 USDT
+            'CAD': 0.73,   // 1 CAD = 0.73 USDT
+            'AUD': 0.65    // 1 AUD = 0.65 USDT
+          };
+          
+          const exchangeRate = conversionRates[currency] || 0.98;
+          const usdtAmount = (amount * exchangeRate).toFixed(6);
+          
+          resolve({
+            success: true,
+            usdtAmount: usdtAmount,
+            transactionId: 'BYBIT_' + Math.random().toString(36).substr(2, 10).toUpperCase()
+          });
+        }, 2000);
+      });
+    }
+
+    // ==================== MAIN APPLICATION CODE ====================
+    
+    // DOM Elements
+    const donationOptionsContainer = document.getElementById('donation-options');
+    const customAmountInput = document.getElementById('custom-amount');
+    const donationForm = document.getElementById('donation-form');
+    const successMessage = document.getElementById('success-message');
+    const cryptoAmount = document.getElementById('crypto-amount');
+    const transactionId = document.getElementById('transaction-id');
+    const countrySelect = document.getElementById('country-select');
+    const currencyDisplay = document.getElementById('currency-display');
+
+    // Current country and currency settings
+    let currentCountry = 'US';
+    let currentCurrency = countrySettings['US'];
+
+    // Update donation options based on country selection
+    function updateDonationOptions() {
+      const country = countrySettings[currentCountry];
+      const optionsContainer = document.getElementById('donation-options');
+      
+      // Clear existing options
+      optionsContainer.innerHTML = '';
+      
+      // Add new options
+      country.amounts.forEach((amount, index) => {
+        const option = document.createElement('div');
+        option.className = `donation-option ${index === 0 ? 'active' : ''}`;
+        option.setAttribute('data-amount', amount);
+        option.textContent = `${country.symbol}${amount.toLocaleString()}`;
+        optionsContainer.appendChild(option);
+      });
+      
+      // Update custom amount placeholder
+      customAmountInput.placeholder = `Or enter custom amount in ${country.currency}`;
+      
+      // Update currency display
+      currencyDisplay.textContent = `Selected Currency: ${country.name} (${country.currency} ${country.symbol})`;
+      
+      // Reattach event listeners to new options
+      attachDonationOptionListeners();
+    }
+
+    // Attach event listeners to donation options
+    function attachDonationOptionListeners() {
+      const donationOptions = document.querySelectorAll('.donation-option');
+      
+      donationOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          donationOptions.forEach(opt => opt.classList.remove('active'));
+          option.classList.add('active');
+          customAmountInput.value = '';
+        });
+      });
+    }
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+      // Load configuration and content from localStorage
+      loadConfigFromStorage();
+      loadContentFromStorage();
+      
+      updateDonationOptions();
+      attachDonationOptionListeners();
+      
+      // Country selection event listener
+      countrySelect.addEventListener('change', function() {
+        currentCountry = this.value;
+        currentCurrency = countrySettings[currentCountry];
+        updateDonationOptions();
+      });
+      
+      // Custom amount input event listener
+      customAmountInput.addEventListener('input', () => {
+        if (customAmountInput.value) {
+          document.querySelectorAll('.donation-option').forEach(opt => opt.classList.remove('active'));
+        }
+      });
+      
+      donationForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Get donation amount
+        let amount = 0;
+        const activeOption = document.querySelector('.donation-option.active');
+        if (activeOption) {
+          amount = parseFloat(activeOption.getAttribute('data-amount'));
+        } else if (customAmountInput.value) {
+          amount = parseFloat(customAmountInput.value);
+        }
+        
+        // Get donor info
+        const donorEmail = document.getElementById('email').value;
+        const donorName = document.getElementById('name').value;
+        const donorPhone = document.getElementById('phone').value;
+        
+        // Validate form inputs
+        const validationErrors = validateDonationForm(donorEmail, donorName, donorPhone, amount);
+        if (validationErrors.length > 0) {
+          alert('Please fix the following errors:\n' + validationErrors.join('\n'));
+          return;
+        }
+        
+        // Process payment with Flutterwave
+        const paymentInitiated = initializeFlutterwavePayment(
+          donorEmail, 
+          amount, 
+          donorPhone, 
+          donorName, 
+          currentCountry,
+          async function(response) {
+            // This callback runs when Flutterwave payment is successful
+            
+            if (response.status === 'successful') {
+              // Show processing state
+              const donateBtn = document.querySelector('.donate-btn');
+              donateBtn.disabled = true;
+              donateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Converting to USDT...';
+              
+              try {
+                // Always convert to crypto (compulsory)
+                const cryptoResult = await simulateBybitConversion(amount, currentCurrency.currency);
+                
+                if (cryptoResult.success) {
+                  // Update success message with crypto details
+                  cryptoAmount.textContent = `${cryptoResult.usdtAmount} USDT`;
+                  transactionId.textContent = cryptoResult.transactionId;
+                }
+                
+                // Show success message
+                donationForm.style.display = 'none';
+                successMessage.classList.add('active');
+                
+              } catch (error) {
+                console.error('Donation processing error:', error);
+                alert('There was an error processing your donation. Please try again.');
+              } finally {
+                // Reset form after 8 seconds
+                setTimeout(() => {
+                  donationForm.style.display = 'block';
+                  successMessage.classList.remove('active');
+                  donationForm.reset();
+                  document.querySelector('.donation-option').classList.add('active');
+                  customAmountInput.value = '';
+                  donateBtn.disabled = false;
+                  donateBtn.innerHTML = '<i class="fas fa-heart"></i> Complete Donation';
+                }, 8000);
+              }
+            } else {
+              alert('Payment was not successful. Please try again.');
+            }
+          }
+        );
+        
+        if (!paymentInitiated) {
+          return; // Flutterwave not configured
+        }
+      });
+    });
+  </script>
+</body>
+</html>

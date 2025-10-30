@@ -1,0 +1,220 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"fo",
+				"font-weight"
+			],
+			[
+				"fon",
+				"font-family"
+			],
+			[
+				"tex",
+				"text-decoration"
+			],
+			[
+				"font",
+				"font-family"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/pc/Downloads/happydoggosupport-project/frontend/index.html",
+		"/C/Users/pc/Downloads/happydogo/index.html",
+		"/C/Users/pc/Downloads/happydogo/.env",
+		"/C/Users/pc/Downloads/happydogo/admin.html",
+		"/C/Users/pc/Downloads/happydogo/package.json",
+		"/C/Users/pc/Downloads/happydogo/server.js",
+		"/C/Users/pc/Downloads/happydogo/test.html",
+		"/C/Users/pc/Downloads/banking app/billpay.html",
+		"/C/Users/pc/Downloads/banking app/js/billpay.js",
+		"/C/Users/pc/Documents/interview chabot/backend/run.py",
+		"/C/Users/pc/Downloads/banking app/js/admin.js",
+		"/C/Users/pc/Downloads/banking app/admin.html",
+		"/C/Users/pc/Downloads/banking app/js/transfer.js",
+		"/C/Users/pc/Downloads/banking app/transfer.html",
+		"/C/Users/pc/Downloads/banking app/js/accounts.js",
+		"/C/Users/pc/Downloads/banking app/accounts.html",
+		"/C/Users/pc/Downloads/banking app/js/common.css",
+		"/C/Users/pc/Downloads/banking app/js/user-dashboard.js",
+		"/C/Users/pc/Downloads/banking app/js/data.js",
+		"/C/Users/pc/Downloads/banking app/js/auth.js",
+		"/C/Users/pc/Downloads/banking app/index.html",
+		"/C/Users/pc/Downloads/banking app/dashboard.html",
+		"/C/Users/pc/Downloads/webscrapper.py",
+		"/C/Users/pc/Downloads/bankingsystem.html",
+		"/C/Users/pc/Downloads/finaldogo.html",
+		"/C/Users/pc/Downloads/freshdogo.html",
+		"/C/Program Files/Himanshuzzz Game Inc/The Incredible Hulk 2008 [Full Game][CD-RIP] by himanshuzzz/data/ACTIONS.ARC",
+		"/C/Users/pc/Downloads/happydogo.html",
+		"/C/Users/pc/Downloads/serialdata.html",
+		"/C/Users/pc/Downloads/superman/maindonation.html",
+		"/C/Users/pc/Downloads/index.html",
+		"/C/Users/pc/Downloads/superman/donation2.html",
+		"/C/Users/pc/Downloads/superman/donation.html",
+		"/C/Users/pc/Downloads/superman/scene.usdz",
+		"/C/Users/pc/Downloads/superman/ticket generator.html",
+		"/C/Users/pc/Downloads/Deeplive/hacks/run.py",
+		"/C/Users/pc/Downloads/superman/ticket generator 2.html",
+		"/C/Users/pc/Downloads/superman.html"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "index.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
